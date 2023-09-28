@@ -3,7 +3,7 @@
   Welcome to CampusConnect, the exclusive social network designed exclusively for your university community! 
 CampusConnect is your go-to resource for everything connected to used goods sales, lost and found items, borrowing, donations, and much more, whether you're a student, faculty member, or staff member.
 
-# Team Members
+## Team Members
 
   Doğa Özdemir
   Zeynep Baş
@@ -11,11 +11,11 @@ CampusConnect is your go-to resource for everything connected to used goods sale
   Bartu Özyıldırım
   Burak Efe Öğüt
 
-# Motivation
+## Motivation
 
   CampusConnect was created with a clear motivation: to enhance and simplify the university experience by providing a comprehensive, user-friendly platform for various community needs. Our goal is to foster a sense of belonging and convenience within the university community by addressing common challenges such as buying and selling second-hand items, recovering lost belongings, facilitating borrowing, and encouraging donations.
 
-# Goals
+## Goals
 
 - Enhance Campus Life: CampusConnect aims to make life on campus more convenient and enjoyable by connecting students, faculty, and staff through a shared marketplace and information hub.
 
@@ -23,11 +23,11 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 - Promote Sustainability: By facilitating second-hand sales and encouraging donations, CampusConnect also contributes to sustainability efforts by reducing waste and promoting resource sharing.
 
-# Important Problem
+## Important Problem
 
   CampusConnect resolves the issue of fragmented and inefficient communication and transaction processes on campus. Prior to CampusConnect, students and staff had to rely on disparate methods and platforms for buying/selling items, locating lost belongings, or finding suitable borrowing opportunities. Our platform centralizes these activities, making them more accessible and streamlined.
 
-# Features
+## Features
 
   CampusConnect offers a wide range of features to meet the diverse needs of our users, including:
   
@@ -45,7 +45,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 - Additional Features: CampusConnect goes beyond the basics, offering services for finding roommates, seeking tutoring, and more.
 
-# Selling Points
+## Selling Points
 
   CampusConnect distinguishes itself through:
   
@@ -57,7 +57,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 - Security: Secure payment options and user profiles protect the community from potential scams or fraudulent activities.
 
-# What Makes This Web App Interesting/Cool
+## What Makes This Web App Interesting/Cool
 
   CampusConnect is cool because it transforms everyday campus life into a more connected, efficient, and sustainable experience. It harnesses the power of technology to bring people together, reduce waste, and simplify daily tasks, making it an indispensable tool for everyone in the university community.
 
