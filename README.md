@@ -5,11 +5,11 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 ## Team Members
 
-  Doğa Özdemir
-  Zeynep Baş
-  Serra Çapraz
-  Bartu Özyıldırım
-  Burak Efe Öğüt
+  Doğa Özdemir\n
+  Zeynep Baş\n
+  Serra Çapraz\n
+  Bartu Özyıldırım\n
+  Burak Efe Öğüt\n
 
 ## Motivation
 
