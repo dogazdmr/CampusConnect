@@ -59,7 +59,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 ## What Makes This Web App Interesting/Cool
 
-  CampusConnect is cool because it transforms everyday campus life into a more connected, efficient, and sustainable experience. It harnesses the power of technology to bring people together, reduce waste, and simplify daily tasks, making it an indispensable tool for everyone in the university community.
+  CampusConnect transforms everyday campus life into a more connected, efficient, and sustainable experience. It harnesses the power of technology to bring people together, reduce waste, and simplify daily tasks, making it an indispensable tool for everyone in the university community.
 
 ---
 
