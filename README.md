@@ -1,4 +1,4 @@
-### CampusConnect
+# CampusConnect
 
   Welcome to CampusConnect, the exclusive social network designed exclusively for your university community! 
 CampusConnect is your go-to resource for everything connected to used goods sales, lost and found items, borrowing, donations, and much more, whether you're a student, faculty member, or staff member.
