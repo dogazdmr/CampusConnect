@@ -25,7 +25,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 ## Important Problem
 
-  CampusConnect resolves the issue of fragmented and inefficient communication and transaction processes on campus. Prior to CampusConnect, students and staff had to rely on disparate methods and platforms for buying/selling items, locating lost belongings, or finding suitable borrowing opportunities. Our platform centralizes these activities, making them more accessible and streamlined.
+  CampusConnect resolves the issue of fragmented and inefficient communication and transaction processes on campus. Prior to CampusConnect, students and staff had to rely on insufficient methods and unreliable platforms for buying/selling items, locating lost belongings, or finding suitable borrowing opportunities. Our platform centralizes these activities, making them more accessible and streamlined.
 
 ## Features
 
@@ -37,7 +37,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 - Second-Hand Sales: Users can browse and list second-hand items by categories such as department, clothing, housing, etc., and utilize price filtering. Negotiable and non-negotiable listings are supported to accommodate various selling preferences.
 
-- Lost and Found: CampusConnect helps users recover lost items by allowing people to post photos and details of found items. Listings include the number of days items have been in the system, with automatic removal of listings after 30 days.
+- Lost and Found: CampusConnect helps users recover lost items by allowing people to post photos and details of found items as well as posting about their lost items. Listings include the number of days items have been in the system, with automatic removal of listings after 30 days.
 
 - Borrowing: Borrowing options, both paid and free, are available to users, making it easy to find and lend items or services within the community.
 
@@ -55,7 +55,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 - Sustainability: CampusConnect promotes environmentally responsible practices through second-hand sales and donations.
 
-- Security: Secure payment options and user profiles protect the community from potential scams or fraudulent activities.
+- Security: Secure payment options and university verified user profiles protect the community from potential scams or fraudulent activities.
 
 ## What Makes This Web App Interesting/Cool
 
