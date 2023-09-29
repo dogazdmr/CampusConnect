@@ -13,7 +13,7 @@ CampusConnect is your go-to resource for everything connected to used goods sale
 
 ## Motivation
 
-  CampusConnect was created with a clear motivation: to enhance and simplify the university experience by providing a comprehensive, user-friendly platform for various community needs. Our goal is to foster a sense of belonging and convenience within the university community by addressing common challenges such as buying and selling second-hand items, recovering lost belongings, facilitating borrowing, and encouraging donations.
+  CampusConnect was created with the motivation to enhance and simplify the university experience by providing a comprehensive, user-friendly platform for various community needs. Our goal is to foster a sense of belonging and convenience within the university community by addressing common challenges such as buying and selling second-hand items, recovering lost belongings, facilitating borrowing, and encouraging donations.
 
 ## Goals
 
