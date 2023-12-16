@@ -65,6 +65,7 @@ function Layout() {
     { label: 'Rent', icon: 'pi pi-fw pi-calendar', to: '/home/rent' },
     { label: 'Donations', icon: 'pi pi-fw pi-heart', to: '/home/donations' },
     { label: 'Lost and Found', icon: 'pi pi-fw pi-search', to: '/home/lost-and-found' },
+    { label: 'Messages', icon: 'pi pi-fw pi-comments', badge:"8", to: '/home/messages', className:'absolute right-0', style: { marginRight: '240px' } },
     { label: 'Profile', icon: 'pi pi-fw pi-user', to: '/home/profile' , className: 'absolute right-0', style: { marginRight: '100px' }},
   ];
 
