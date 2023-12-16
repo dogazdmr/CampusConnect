@@ -121,9 +121,9 @@ function Layout() {
             <>
               <li>
                 <img
-                  src="./src/logo.jpeg"
+                  src="./src/logo.png"
                   alt="Logo"
-                  style={{ marginRight: '8px' , width: '100px',     // Set the width to your desired size
+                  style={{ marginRight: '8px' , width: '260px',     // Set the width to your desired size
                   height: 'auto',}}  // Adjust the margin as needed
                 />
                <button
