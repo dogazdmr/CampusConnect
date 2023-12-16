@@ -99,11 +99,11 @@ export default function SecondHand(){
         );
     };
 
-    const handleItemClick = (itemId) => {
+    const handleItemClick = (id) => {
         //setSelected(itemId)
         // Navigate to the item's page using React Router or any other routing mechanism
-        console.log(`Item clicked with ID: ${itemId}`);
-        navigate(`/home/second-hand/second-hand-item/${itemId}`);//
+        console.log(`Item clicked with ID: ${id}`);
+        navigate(`/home/second-hand/second-hand-item`);//${id}
     };
 
 /*     function handleChange(itemId) {

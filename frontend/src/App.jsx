@@ -52,7 +52,7 @@ function App() {
               element: <SecondHand />,
               children: [
                 {
-                  path: "/home/second-hand/second-hand-item/:id",
+                  path: "/home/second-hand/second-hand-item",///:id
                   element: <SecondHandItem />,
                 },
               ]

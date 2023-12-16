@@ -7,13 +7,54 @@ import { InputText } from 'primereact/inputtext';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Divider } from 'primereact/divider';
 import { Fieldset } from 'primereact/fieldset';
-//import { Widget } from 'react-chat-widget';
-//import 'react-chat-widget/lib/styles.css';
-
+import AddSecondHand from './AddSecondHand';
+import React from 'react';
+import { Outlet, Link, Route, Routes } from 'react-router-dom';
 
 export default function Profile() {
 
-    /*     const [donations, setDonations] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleAddClick = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+    return (
+        <div>
+            <h1>Your Profile</h1>
+            <ProfileLayout/>
+            <Button icon="pi pi-plus"
+                className="absolute right-0 p-button-rounded p-button-info p-button-text"
+                aria-label="Add Donation"
+                onClick={handleAddClick} />
+
+            {showModal && <AddSecondHand onClose={handleCloseModal} />}
+        </div>
+    );
+}
+
+function ProfileLayout() {
+    return (
+        <div>
+            {/* You can customize the layout as needed for the Club Home page */}
+            <nav>
+                <Button className="ml-3 text-color surface-300">
+                    <Link to=".">Club Home</Link>
+                </Button>
+                <Button className="ml-3 text-color surface-300">
+                    <Link to="/club-home/edit-profile">Edit Club Profile</Link>
+                </Button>
+            </nav>
+            <hr />
+            <Outlet />
+        </div>
+    );
+}
+
+/*     const [donations, setDonations] = useState([]);
       const [loading, setLoading] = useState(true);
       const [error, setError] = useState(null);
         // State to store the list of donations
@@ -59,81 +100,31 @@ export default function Profile() {
         }
       }; */
 
-    const initialDonations = [
-        { id: 1, clubName: "TDM", sdate: '15 September 2023', edate: '19 December 2023', items: ['Books', 'Pencils', 'idk'], location: 'A-Z27' },
-        { id: 2, clubName: "Club 1", sdate: '18 October 2023', edate: '20 December 2023', items: ['attention'], location: 'B-Z08' },
-        { id: 3, clubName: "Club 2", sdate: '30 October 2023', edate: '27 December 2023', location: 'G-135' },
-        { id: 4, clubName: "Club 3", sdate: '15 September 2023', edate: '19 December 2023', items: ['something', 'something', 'something'], location: 'A-Z27' },
-        { id: 5, clubName: "Club 4", sdate: '18 October 2023', edate: '20 December 2023', items: ['something', 'something', 'something'], location: 'B-Z08' },
-        { id: 6, clubName: "Club 5", sdate: '30 October 2023', edate: '27 December 2023', items: ['something', 'something', 'something'], location: 'G-135' },
-    ]
+/////////////////////////////////////////////////////////////////////////////////
 
-    const [donations, setDonations] = useState(initialDonations);
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const handleSearch = () => {
-        if (searchTerm.trim() === '') {
-            // If search term is empty, reset to the initial full list
-            setDonations(initialDonations);
-        } else {
-            // Filter donations based on the entered search term
-            const filteredDonations = initialDonations.filter((donation) =>
-                donation.clubName.includes(searchTerm)
-            );
-            setDonations(filteredDonations);
-        }
-    };
-
-    const itemTemplate = (donation) => {
-        return (
-            <div className="p-col-12 p-md-4">
-                <Card title={`${donation.clubName}`} style={{ height: '400px', width: '350px'}} className="m-3">
-                    <p>Start Date: {donation.sdate}</p>
-                    <p>End Date: {donation.edate}</p>
-                    <p>Location: {donation.location}</p>
-                    <p>
-                        Accepting:
-                        <ul>
-                            {donation.items &&
-                                donation.items.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                        </ul>
-                    </p>
-                    {/* <Button
-            label="View Details"
-            icon="pi pi-info-circle"
-            className="p-button-text"
-          /> */}
-                </Card>
-            </div>
-        );
-    };
-
-    /*return (
-         <div className="p-grid p-fluid">
-            <div className="p-col-12">
-                <Fieldset legend="Donations">
-                    <div className="p-d-flex p-ai-center p-jc-between">
-                        <InputText
-                            placeholder="Search..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <Button label="Search" icon="pi pi-search" onClick={handleSearch} />
-                    </div>
-                    <Divider />
-                    <DataView
-                        value={donations}
-                        layout="grid"
-                        itemTemplate={itemTemplate}
-                        paginator
-                        paginatorPosition="both"
-                        rows={6}
-                        //className="flex"
+/*return (
+     <div className="p-grid p-fluid">
+        <div className="p-col-12">
+            <Fieldset legend="Donations">
+                <div className="p-d-flex p-ai-center p-jc-between">
+                    <InputText
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                </Fieldset>
-            </div>
-        </div> 
-    );*/
-}
+                    <Button label="Search" icon="pi pi-search" onClick={handleSearch} />
+                </div>
+                <Divider />
+                <DataView
+                    value={donations}
+                    layout="grid"
+                    itemTemplate={itemTemplate}
+                    paginator
+                    paginatorPosition="both"
+                    rows={6}
+                    //className="flex"
+                />
+            </Fieldset>
+        </div>
+    </div> 
+);*/
