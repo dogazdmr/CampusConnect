@@ -23,7 +23,7 @@ import 'primeflex/primeflex.min.css'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
-//import "primeicons/primeicons.css";
+import "primeicons/primeicons.css";
 
 function App() {
 
@@ -106,7 +106,7 @@ function Layout() {
   return (
     <div className="p-5 pl-7">
       <nav>
-        <Link to="/">LOGIN</Link>
+        <Link to="/">LOGOUT</Link>
       </nav>
       <hr />
 
