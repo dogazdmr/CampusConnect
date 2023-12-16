@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Outlet, Link, useRoutes, useNavigate } from "react-router-dom"
+import { Routes, Route, Outlet, Link, useRoutes, useNavigate, useLocation } from "react-router-dom"
 //import { BrowserRouter as Router, Route, Switch, Link, Outlet } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 import { Sidebar } from 'primereact/sidebar';
@@ -52,7 +52,7 @@ function App() {
               element: <SecondHand />,
               children: [
                 {
-                  path: "/home/second-hand/second-hand-item",///:id
+                  path: "/home/second-hand/second-hand-item/:id",
                   element: <SecondHandItem />,
                 },
               ]
@@ -68,7 +68,7 @@ function App() {
             {
               path: "/home/donations",
               element: <Donations />,
-              /* children: [
+              /* children: 
                 {
                   path: "/home/donations/donation-form",
                   element: <DonationForm />
@@ -103,18 +103,50 @@ function App() {
 }
 
 function Layout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isNotLoginPath = location.pathname !== '/';
+
+  const handleLogout = () => {
+
+    navigate('/');
+  };
+
   return (
     <div className="p-5 pl-7">
       <nav>
-        <Link to="/">LOGOUT</Link>
+        <ul className="list-none d-flex align-items-center">
+          {isNotLoginPath && (
+            <>
+              <li>
+                <img
+                  src="./src/logo.jpeg"
+                  alt="Logo"
+                  style={{ marginRight: '8px' , width: '100px',     // Set the width to your desired size
+                  height: 'auto',}}  // Adjust the margin as needed
+                />
+               <button
+                className='absolute right-0'
+                style={{ marginRight: '100px' }}
+                onClick={handleLogout}
+              >
+                <i className='pi pi-fw pi-sign-out'></i> LOGOUT
+              </button>
+
+
+              </li>
+            </>
+          )}
+        </ul>
       </nav>
       <hr />
-
+  
       <Outlet />
     </div>
   );
+  
 }
-
 function NoMatch() {
   return (
     <div>
