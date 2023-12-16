@@ -37,18 +37,16 @@ function Home() {
 
       <Layout />
       {isHomePage && (
-        <div>
-          <Card>
-            <img
-              src={
-                'https://unsplash.com/photos/0rvKw0fDiHk/download?ixid=M3wxMjA3fDF8MXxhbGx8MXx8fHx8fDJ8fDE3MDI2NzIyMjh8&force=true'
-              }
-              alt={'home'}
-              style={{ width: '100px', height: '100px' }}
-              className="center"
-            />
-          </Card>
-        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Card>
+          <img
+            src={"./src/bilkoimo.jpg"}
+            alt={'home'}
+            style={{ width: '1000px', height: 'auto' }}
+          />
+        </Card>
+      </div>
+      
       )}
 
     </>
