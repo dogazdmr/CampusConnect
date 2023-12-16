@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Routes, Route, Outlet, Link, useRoutes, useNavigate, useLocation } from "react-router-dom"
 //import { BrowserRouter as Router, Route, Switch, Link, Outlet } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
@@ -26,6 +27,22 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 function App() {
+
+  const history = useHistory();
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is logged in (use your own logic here)
+    const storedIsLogin = localStorage.getItem('is_login') === 'true';
+    setIsLogin(storedIsLogin);
+  }, []);
+
+  useEffect(() => {
+    // Redirect to the login page if not logged in
+    if (!isLogin) {
+      history.push('/login');
+    }
+  }, [isLogin, history]);
 
   const routes= [
     {
@@ -147,6 +164,7 @@ function Layout() {
   );
   
 }
+
 function NoMatch() {
   return (
     <div>
@@ -159,6 +177,25 @@ function NoMatch() {
 }
 
 export default App;
+
+
+
+/* const App = () => {
+
+
+  return (
+    <div>
+      {isLogin ? (
+        // Render your authenticated content
+        <p>Welcome to the application!</p>
+      ) : (
+        // You can redirect or show a login message here
+        <p>Please log in to access the application.</p>
+      )}
+    </div>
+  );
+}; */
+
 
 
 /* function Login() {

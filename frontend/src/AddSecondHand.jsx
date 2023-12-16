@@ -119,7 +119,7 @@ export default function AddSecondHand({ onClose }) {
                     >
                         Add Second Hand Listing</Button>
                 </form>
-                <p>This is the donation form content.</p>
+                <p>This is the second hand listing form content.</p>
             </div>
         </div>
     );
