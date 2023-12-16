@@ -7,19 +7,20 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import Login from './Login';
 import Home from './Home';
+import ClubHome from './ClubHome';
 import SecondHand from './SecondHand';
 import Rent from './Rent';
 import LostandFound from './LostandFound';
 import Donations from './Donations'; 
-//import { Donations } from './Donations';
-//import { UserProfile } from './UserProfile'; 
+import DonationForm from './DonationForm'; 
+import Profile from './Profile';
 
 import 'primeflex/primeflex.min.css'
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
-
+//import "primeicons/primeicons.css";
 
 function App() {
 
@@ -29,6 +30,10 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element: <Login /> },
+        {
+          path: "/club-home",
+          element: <ClubHome />,
+        },
         {
           path: "/home",
           element: <Home />,
@@ -48,6 +53,16 @@ function App() {
             {
               path: "/home/donations",
               element: <Donations />,
+              /* children: [
+                {
+                  path: "/home/donations/donation-form",
+                  element: <DonationForm />
+                },
+              ] */
+            },
+            {
+              path: "/home/profile",
+              element: <Profile />,
             }
           ]
         },
@@ -81,9 +96,6 @@ function Layout() {
   );
 }
 
-
-
-
 function NoMatch() {
   return (
     <div>
@@ -95,6 +107,7 @@ function NoMatch() {
   );
 }
 
+export default App;
 
 
 /* function Login() {
@@ -120,4 +133,4 @@ function NoMatch() {
   );
 } */
 
-export default App;
+

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Outlet, Link, useRoutes } from "react-router-dom"
+import { Routes, Route, Outlet, Link, useRoutes, useLocation } from "react-router-dom"
 //import { BrowserRouter as Router, Route, Switch, Link, Outlet } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 import { Sidebar } from 'primereact/sidebar';
@@ -9,23 +9,45 @@ import { Button } from 'primereact/button';
 import SecondHand from './SecondHand';
 import Rent from './Rent';
 import LostandFound from './LostandFound';
-import Donations from './Donations'; 
+import Donations from './Donations';
+import { Card } from 'primereact/card';
 //import { Donations } from './Donations';
 //import { UserProfile } from './UserProfile'; 
+//import { FaAmazon } from 'react-icons/fa';
 
-import 'primeflex/primeflex.min.css'
+import 'primeicons/primeicons.css';
+/* import 'primeflex/primeflex.min.css'
 //theme
-//import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
-import "primereact/resources/primereact.min.css";
+import "primereact/resources/primereact.min.css"; */
 
 
 function Home() {
 
+  const location = useLocation();
+
+  // Check if the current location is the home page
+  const isHomePage = location.pathname === '/home';
+
   return (
     <>
 
-      <Layout/>
+      <Layout />
+      {isHomePage && (
+        <div>
+          <Card>
+            <img
+              src={
+                'https://unsplash.com/photos/0rvKw0fDiHk/download?ixid=M3wxMjA3fDF8MXxhbGx8MXx8fHx8fDJ8fDE3MDI2NzIyMjh8&force=true'
+              }
+              alt={'home'}
+              style={{ width: '100px', height: '100px' }}
+              className="center"
+            />
+          </Card>
+        </div>
+      )}
 
     </>
   )
@@ -33,10 +55,9 @@ function Home() {
 }
 
 function Layout() {
-    console.log("are")
   return (
-    <div>
-      <nav>
+    <div >
+      <nav className="mr-8 ">
 
         <Button className=" ml-3 text-color surface-300">
           <Link to="/home/second-hand">Second Hand</Link>
@@ -50,9 +71,12 @@ function Layout() {
         <Button className=" ml-3 text-color surface-300">
           <Link to="/home/lost-and-found">Lost and Found</Link>
         </Button>
-        {/* <Button icon="pi pi-user" className="p-button-rounded p-button-info p-button-text " aria-label="User" /> */}
-        <Button className="text-color surface-300 ml-3 ">
-          <Link to="/home/profile">Profile</Link>
+        <Button
+          icon="pi pi-user"
+          className=" absolute right-0 p-button-rounded p-button-info p-button-text "
+          aria-label="User"
+        >
+          <Link to="/home/profile"> Profile </Link>
         </Button>
       </nav>
 
@@ -63,14 +87,6 @@ function Layout() {
   );
 }
 
-
-function Profile(){
-  return (
-    <div>
-      <p>Profile</p>
-    </div>
-  )
-}
 
 function NoMatch() {
   return (

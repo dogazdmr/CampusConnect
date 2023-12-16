@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Outlet, Route, useNavigate, useParams } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import Home from './Home'
+import ClubHome from './ClubHome'
 import { Card } from 'primereact/card';
 import { Password } from 'primereact/password';
 
@@ -22,6 +23,10 @@ export default function Login() {
     const handleSubmit = () => {
         if(studentId==1234)
         navigate(`/home`);
+        else if(studentId==4321){
+            console.log("login handle submit")
+        navigate(`/club-home`);
+        }
     }
 
     /* constructor(props) {
@@ -37,6 +42,7 @@ export default function Login() {
 
     return (
         <div className="center-container grid p-fluid">
+        <p>user login username: 1234 <br/>club login: 4321 <br/> password empty</p>
             <Card className="center-card flex flex-column">
                 <h2 className="">Login</h2>
                 <InputText className="border-round h4 mb-4" value={studentId} placeholder="Student ID" onChange={(event) => handleChange(event.target.value)} />

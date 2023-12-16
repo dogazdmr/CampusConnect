@@ -7,13 +7,9 @@ import { InputText } from 'primereact/inputtext';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Divider } from 'primereact/divider';
 import { Fieldset } from 'primereact/fieldset';
-//import {useNavigate} from 'react-router-dom';
-import DonationForm from './DonationForm';
 
 
-export default function Donations() {
-
-    //const navigate = useNavigate();
+export default function Profile() {
 
     /*     const [donations, setDonations] = useState([]);
       const [loading, setLoading] = useState(true);
@@ -62,7 +58,7 @@ export default function Donations() {
       }; */
 
     const initialDonations = [
-        { id: 1, clubName: "TDP", sdate: '15 September 2023', edate: '19 December 2023', items: ['Books', 'Pencils', 'idk'], location: 'A-Z27' },
+        { id: 1, clubName: "TDM", sdate: '15 September 2023', edate: '19 December 2023', items: ['Books', 'Pencils', 'idk'], location: 'A-Z27' },
         { id: 2, clubName: "Club 1", sdate: '18 October 2023', edate: '20 December 2023', items: ['attention'], location: 'B-Z08' },
         { id: 3, clubName: "Club 2", sdate: '30 October 2023', edate: '27 December 2023', location: 'G-135' },
         { id: 4, clubName: "Club 3", sdate: '15 September 2023', edate: '19 December 2023', items: ['something', 'something', 'something'], location: 'A-Z27' },
@@ -72,18 +68,6 @@ export default function Donations() {
 
     const [donations, setDonations] = useState(initialDonations);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const [showModal, setShowModal] = useState(false);
-
-    //yeni
-  const handleAddClick = () => {
-    setShowModal(true);
-  };
-
-  //yeni
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
     const handleSearch = () => {
         if (searchTerm.trim() === '') {
@@ -124,23 +108,10 @@ export default function Donations() {
         );
     };
 
-/*     function handleAddClick() {
-        console.log("hiiii");
-        navigate(`/home/donations/donation-form`);
-    } */
-
-    return (
-        <div className="p-grid p-fluid">
+    /*return (
+         <div className="p-grid p-fluid">
             <div className="p-col-12">
-                {/*bu div ici yeni*/}
-                <div>
-                    <h2>Donations Page</h2>
-                    <button onClick={handleAddClick}>Add Donation</button>
-
-                    {showModal && <DonationForm onClose={handleCloseModal} />}
-                </div>
                 <Fieldset legend="Donations">
-                    
                     <div className="p-d-flex p-ai-center p-jc-between">
                         <InputText
                             placeholder="Search..."
@@ -161,54 +132,6 @@ export default function Donations() {
                     />
                 </Fieldset>
             </div>
-        </div>
-    );
+        </div> 
+    );*/
 }
-
-/* function Layout() {
-    return (
-      <div>
-        <nav>
-  
-          <Button text className=" ml-3">
-            <Link to="/">Home</Link>
-          </Button>
-  
-        </nav>
-  
-        <hr />
-  
-        <Outlet />
-      </div>
-    );
-  } */
-
-/* {data.stateExecutions.map((execution, index) => <div className="flex gap-3">
-<RadioButton
-    key={index}
-    className="text-color flex flex-column gap-3 my-2"
-    onChange={() => handleChange(index)}
-    checked={selected === index} />
-<label className="my-2">{(execution !== null) ?
-    ('Execution ' + (index + 1).toString()) + " - " + execution.stateId
-    : 'Execution ' + (index + 1).toString() + " - null"}
-</label>
-</div>
-)} */
-
-
-
-/*     return (
-        <div>
-        <h2>Donations</h2>
-        <ul>
-          {donations.map(donation => (
-            <li key={donation.id}>
-              {donation.title} - {donation.amount}
-            </li>
-          ))}
-        </ul>
-      </div>
-        
-    );
-} */

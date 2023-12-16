@@ -1,60 +1,60 @@
 import { Card } from 'primereact/card';
 import { useEffect, useState } from "react";
 //////////////////////////////////////////////////
-   // Import necessary React and PrimeReact components
-   import { Button } from 'primereact/button';
-   import { InputText } from 'primereact/inputtext';
-   import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
-   import { Divider } from 'primereact/divider';
-   import { Fieldset } from 'primereact/fieldset';
+// Import necessary React and PrimeReact components
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
+import { Divider } from 'primereact/divider';
+import { Fieldset } from 'primereact/fieldset';
 
 export default function LostandFound() {
 
-/*     const [donations, setDonations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-    // State to store the list of donations
-    const [donations, setDonations] = useState([]);
-    // State to store the search term
-    const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/donations/');
-        if (!response.ok) {
-          throw new Error('HTTP error! Status: ${response.status}');
+  /*     const [donations, setDonations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+      // State to store the list of donations
+      const [donations, setDonations] = useState([]);
+      // State to store the search term
+      const [searchTerm, setSearchTerm] = useState('');
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://localhost:8080/api/donations/');
+          if (!response.ok) {
+            throw new Error('HTTP error! Status: ${response.status}');
+          }
+          const result = await response.json();
+          setDonations(result);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
         }
-        const result = await response.json();
-        setDonations(result);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error fetching data: {error.message}</p>;
-  }
-
-  // Function to handle search
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`/api/donations/search/${searchTerm}`);
-      const data = await response.json();
-      setDonations(data);
-    } catch (error) {
-      console.error('Error searching donations:', error);
+      };
+  
+      fetchData();
+    }, []);
+  
+    if (loading) {
+      return <p>Loading...</p>;
     }
-  }; */
+  
+    if (error) {
+      return <p>Error fetching data: {error.message}</p>;
+    }
+  
+    // Function to handle search
+    const handleSearch = async () => {
+      try {
+        const response = await fetch(`/api/donations/search/${searchTerm}`);
+        const data = await response.json();
+        setDonations(data);
+      } catch (error) {
+        console.error('Error searching donations:', error);
+      }
+    }; */
 
   const initialLF = [
     { id: 1, itemName: "Pencil", sdate: '15 September 2023', location: 'A-Z27' },
@@ -73,21 +73,21 @@ export default function LostandFound() {
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
-        // If search term is empty, reset to the initial full list
-        setLFitems(initialLF);
-      } else {
-        // Filter donations based on the entered search term
-        const filteredItems = initialLF.filter((item) =>
-          item.itemName.includes(searchTerm)
-        );
-        setLFitems(filteredItems);
-      }
+      // If search term is empty, reset to the initial full list
+      setLFitems(initialLF);
+    } else {
+      // Filter donations based on the entered search term
+      const filteredItems = initialLF.filter((item) =>
+        item.itemName.includes(searchTerm)
+      );
+      setLFitems(filteredItems);
+    }
   };
 
   const itemTemplate = (item) => {
     return (
       <div className="p-col-12 p-md-4">
-        <Card title={`${item.itemName}`} style={{height: '400px'}}>
+        <Card title={`${item.itemName}`} style={{ height: '400px' }}>
           <p>Found on: {item.sdate}</p>
           <p>End Date: {item.edate}</p>
           <p>Location Found: {item.location}</p>
@@ -114,7 +114,7 @@ export default function LostandFound() {
     <div className="p-grid p-fluid">
       <div className="p-col-12">
         <Fieldset legend="Lost & Found">
-        <p>After the listing duration is up the items will be delivered to Student Affairs</p>
+          <p>After the listing duration is up the items will be delivered to Student Affairs</p>
           <div className="p-d-flex p-ai-center p-jc-between">
             <InputText
               placeholder="Search..."

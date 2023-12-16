@@ -11,6 +11,7 @@ import { ProgressBar } from 'primereact/progressbar';
 import { MultiSelect } from 'primereact/multiselect';
 import { Slider } from 'primereact/slider';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
+import jsonData from '../data/data.json'
 //import './DataTableDemo.css';
 
 export default function SecondHand(){
@@ -24,8 +25,9 @@ export default function SecondHand(){
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [loading, setLoading] = useState(true);
 
+    //const initialItems = jsonData
     const initialItems = [
-        { id: 1, name: "Laptop", price: 800, image: 'laptop.jpg', sellerRating: 4.5 },
+        { id: 1, productName: "Laptop", price: 800, image: 'https://unsplash.com/photos/0rvKw0fDiHk/download?ixid=M3wxMjA3fDF8MXxhbGx8MXx8fHx8fDJ8fDE3MDI2NzIyMjh8&force=true', sellerRating: 4.5 },
         { id: 2, name: "Smartphone", price: 500, image: 'smartphone.jpg', sellerRating: 4.2 },
         { id: 3, name: "Camera", price: 1200, image: 'camera.jpg', sellerRating: 3.8 },
         { id: 4, name: "Programming Languages Book", price: 800, course: "CS319" , image: 'laptop.jpg', sellerRating: 4.5 },
@@ -66,7 +68,13 @@ export default function SecondHand(){
     const renderHeader = () => {
         return (
             <div className="flex justify-content-between">
-                <Button type="button" icon="pi pi-filter-slash" label="Clear" className="p-button-outlined" onClick={clearFilters} />
+                <Button 
+                type="button" 
+                icon="pi pi-filter-slash" 
+                label="Clear" 
+                className="p-button-outlined" 
+                onClick={clearFilters} 
+                style={{ fontSize: '16px', borderRadius: '8px'}}/>
                 <span className="p-input-icon-left">
                     <i className="pi pi-search" />
                     <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
@@ -78,7 +86,7 @@ export default function SecondHand(){
     const nameBodyTemplate = (rowData) => {
         return (
             <Button
-                label={rowData.name}
+                label={rowData.productName}
                 className="text-black-alpha-90 border-none"
                 onClick={() => handleItemClick(rowData.id)}  // Add this line for click handling
                 icon="pi pi-arrow-right"
@@ -90,6 +98,15 @@ export default function SecondHand(){
         // Navigate to the item's page using React Router or any other routing mechanism
         console.log(`Item clicked with ID: ${itemId}`);
     };
+
+    //CHANGE HANDLER FOR CLICKING ON ITEM ON ITEM LIST 
+    /* function handleChange(flow: string, execution: string, number: number) {
+        if (!id)
+            return
+        setSelected(number)
+
+        navigate(`/flows/${id}/executions/${flow}/${execution}`);
+    } */
 
     const priceBodyTemplate = (rowData) => {
         return `$${rowData.price}`;
@@ -119,6 +136,7 @@ export default function SecondHand(){
                     value={items}
                     paginator
                     className="p-datatable-items"
+                    //style={{backgroundColor: "blue"}}
                     showGridlines
                     rows={10}
                     dataKey="id"
@@ -141,6 +159,21 @@ export default function SecondHand(){
                         filterPlaceholder="Search by name"
                         style={{ minWidth: '12rem' }}
                         body={nameBodyTemplate}
+                    />
+                    <Column
+                    field="image"
+                    header="Image"
+                    body={(rowData) => (
+                        <img
+                        src={rowData.image}
+                        alt={rowData.name}
+                        style={{ width: '100px', height: '100px'}}//, borderRadius: '50%' 
+                        />
+                    )}
+                    filter
+                    filterField='Filter'
+                    filterPlaceholder="Search by image"
+                    style={{ minWidth: '6rem' }}
                     />
                     <Column
                         field="price"
