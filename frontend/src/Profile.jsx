@@ -7,6 +7,8 @@ import { InputText } from 'primereact/inputtext';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Divider } from 'primereact/divider';
 import { Fieldset } from 'primereact/fieldset';
+//import { Widget } from 'react-chat-widget';
+//import 'react-chat-widget/lib/styles.css';
 
 
 export default function Profile() {

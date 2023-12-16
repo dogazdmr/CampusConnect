@@ -9,11 +9,14 @@ import Login from './Login';
 import Home from './Home';
 import ClubHome from './ClubHome';
 import SecondHand from './SecondHand';
+import SecondHandItem from './SecondHandItem';
 import Rent from './Rent';
 import LostandFound from './LostandFound';
 import Donations from './Donations'; 
 import DonationForm from './DonationForm'; 
 import Profile from './Profile';
+import Messages from './Messages';
+import EditProfile from './EditClubProfile';
 
 import 'primeflex/primeflex.min.css'
 //theme
@@ -33,6 +36,12 @@ function App() {
         {
           path: "/club-home",
           element: <ClubHome />,
+          children: [
+            {
+              path: "/club-home/edit-profile",
+              element: <EditProfile />,
+            },
+          ]
         },
         {
           path: "/home",
@@ -41,6 +50,12 @@ function App() {
             {
               path: "/home/second-hand",
               element: <SecondHand />,
+              children: [
+                {
+                  path: "/home/second-hand/second-hand-item/:id",
+                  element: <SecondHandItem />,
+                },
+              ]
             },
             {
               path: "/home/rent",
@@ -59,6 +74,10 @@ function App() {
                   element: <DonationForm />
                 },
               ] */
+            },
+            {
+              path: "/home/messages",
+              element: <Messages />,
             },
             {
               path: "/home/profile",

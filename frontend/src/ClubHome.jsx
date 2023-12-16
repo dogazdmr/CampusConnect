@@ -1,66 +1,51 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import { Outlet, Link, Route, Routes } from 'react-router-dom';
+import { Button } from 'primereact/button';
+import DonationForm from './DonationForm';
+import { useState } from 'react';
 function ClubHome() {
 
+    const [showModal, setShowModal] = useState(false);
+
+    const handleAddClick = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
     return (
-        <p>
-            club homeee
-        </p>
+        <div>
+            <h1>Club Home</h1>
+            <ClubHomeLayout />
+            <Button icon="pi pi-plus"
+                className="absolute right-0 p-button-rounded p-button-info p-button-text"
+                aria-label="Add Donation"
+                onClick={handleAddClick} />
+
+            {showModal && <DonationForm onClose={handleCloseModal} />}
+        </div>
     );
-
-/*   return (
-    <>
-
-      <Layout/>
-
-    </>
-  ) */
-
 }
 
-function Layout() {
-  return (
-    <div >
-      <nav className="mr-8 ">
-
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/second-hand">Second Hand</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/rent">Rent</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/donations">Donations</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/lost-and-found">Lost and Found</Link>
-        </Button>
-        <Button 
-        icon="pi pi-user" 
-        className=" absolute right-0 p-button-rounded p-button-info p-button-text " 
-        aria-label="User" 
-        >
-          <Link to="/home/profile"> Profile </Link>
-        </Button>
-      </nav>
-
-      <hr />
-
-      <Outlet />
-    </div>
-  );
+function ClubHomeLayout() {
+    return (
+        <div>
+            {/* You can customize the layout as needed for the Club Home page */}
+            <nav>
+                <Button className="ml-3 text-color surface-300">
+                    <Link to=".">Club Home</Link>
+                </Button>
+                <Button className="ml-3 text-color surface-300">
+                    <Link to="/club-home/edit-profile">Edit Club Profile</Link>
+                </Button>
+            </nav>
+            <hr />
+            <Outlet />
+        </div>
+    );
 }
 
 
-function NoMatch() {
-  return (
-    <div>
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/home">Go to the home page</Link>
-      </p>
-    </div>
-  );
-}
 
 export default ClubHome;

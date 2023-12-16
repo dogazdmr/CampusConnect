@@ -1,11 +1,12 @@
 import { useState } from 'react';
+
+import { InputTextarea } from 'primereact/inputtextarea';
+
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'react-chat-engine-advanced';
+ 
+ 
 export default function DonationForm({ onClose }) {
-    /* console.log("DOnationsssss")
-    return (
-      <div>
-        <p>This is donation form.</p>
-      </div>
-    ); */
     const [donation, setDonation] = useState({
         clubName: '',
         description: ''
@@ -41,26 +42,31 @@ export default function DonationForm({ onClose }) {
     };
 
     return (
-        <div className="modal">
+        <div className="modal round" style={{backgroundColor: "lavender"}}>
           <div className="modal-content">
             <span className="close" onClick={onClose}>
               &times;
             </span>
             <form onSubmit={handleSubmit}>
-            <input 
+            <InputText
                 type="text" 
                 name="clubName" 
                 value={donation.clubName} 
                 onChange={handleChange} 
                 placeholder="Club Name"
+                style={{ width: '400px'}}
+                className="mb-4 ml-4"
             />
-            <textarea 
+            <br/>
+            <InputTextarea 
                 name="description" 
                 value={donation.description} 
                 onChange={handleChange} 
                 placeholder="Description"
+                style={{ width: '400px', height:'300px'}}
+                className="mb-4 ml-4"
             />
-            <button type="submit">Add Donation</button>
+            <Button type="submit" style={{backgroundColor: "indigo"}}>Add Donation</Button>
         </form>
             <p>This is the donation form content.</p>
           </div>

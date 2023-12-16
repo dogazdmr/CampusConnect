@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Outlet, Link, useRoutes, useLocation } from "react-router-dom"
+import { useNavigate, Routes, Route, Outlet, Link, useRoutes, useLocation } from "react-router-dom"
 //import { BrowserRouter as Router, Route, Switch, Link, Outlet } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 import { Sidebar } from 'primereact/sidebar';
@@ -11,6 +11,8 @@ import Rent from './Rent';
 import LostandFound from './LostandFound';
 import Donations from './Donations';
 import { Card } from 'primereact/card';
+import { TabMenu } from 'primereact/tabmenu';
+        
 //import { Donations } from './Donations';
 //import { UserProfile } from './UserProfile'; 
 //import { FaAmazon } from 'react-icons/fa';
@@ -55,38 +57,44 @@ function Home() {
 }
 
 function Layout() {
+  const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const items = [
+    { label: 'Second Hand', icon: 'pi pi-fw pi-tag', to: '/home/second-hand' },
+    { label: 'Rent', icon: 'pi pi-fw pi-calendar', to: '/home/rent' },
+    { label: 'Donations', icon: 'pi pi-fw pi-heart', to: '/home/donations' },
+    { label: 'Lost and Found', icon: 'pi pi-fw pi-search', to: '/home/lost-and-found' },
+    { label: 'Messages', icon: 'pi pi-fw pi-comments', badge:"8", to: '/home/messages', className:'absolute right-0', style: { marginRight: '240px' } },
+    { label: 'Profile', icon: 'pi pi-fw pi-user', to: '/home/profile' , className: 'absolute right-0', style: { marginRight: '100px' }},
+  ];
+
+  const handleTabChange = (e) => {
+    setActiveIndex(e.index);
+    navigate(items[e.index].to);
+  };
+
   return (
-    <div >
-      <nav className="mr-8 ">
-
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/second-hand">Second Hand</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/rent">Rent</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/donations">Donations</Link>
-        </Button>
-        <Button className=" ml-3 text-color surface-300">
-          <Link to="/home/lost-and-found">Lost and Found</Link>
-        </Button>
-        <Button
-          icon="pi pi-user"
-          className=" absolute right-0 p-button-rounded p-button-info p-button-text "
-          aria-label="User"
-        >
-          <Link to="/home/profile"> Profile </Link>
-        </Button>
+    <div>
+      <nav>
+        <TabMenu model={items} activeIndex={activeIndex} onTabChange={handleTabChange}>
+          {items.map((item, index) => (
+            <TabMenu.Item
+              key={index}
+              label={item.label}
+              icon={item.icon}
+              className={activeIndex === index ? 'active-tab' : ''}
+              
+            />
+          ))}
+        </TabMenu>
       </nav>
-
       <hr />
 
       <Outlet />
     </div>
   );
 }
-
 
 function NoMatch() {
   return (

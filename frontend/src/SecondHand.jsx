@@ -12,9 +12,14 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Slider } from 'primereact/slider';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import jsonData from '../data/data.json'
+import { Outlet, Route, useNavigate, useParams } from 'react-router-dom';
+import SecondHandItem from './SecondHandItem';
 //import './DataTableDemo.css';
 
 export default function SecondHand(){
+
+    const navigate = useNavigate();
+    //const [selected, setSelected] = useState(-1)
     const [items, setItems] = useState(null);
     const [filters, setFilters] = useState({
         'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -95,17 +100,17 @@ export default function SecondHand(){
     };
 
     const handleItemClick = (itemId) => {
+        //setSelected(itemId)
         // Navigate to the item's page using React Router or any other routing mechanism
         console.log(`Item clicked with ID: ${itemId}`);
+        navigate(`/home/second-hand/second-hand-item/${itemId}`);//
     };
 
-    //CHANGE HANDLER FOR CLICKING ON ITEM ON ITEM LIST 
-    /* function handleChange(flow: string, execution: string, number: number) {
-        if (!id)
-            return
-        setSelected(number)
-
-        navigate(`/flows/${id}/executions/${flow}/${execution}`);
+/*     function handleChange(itemId) {
+        setSelected(itemId)
+        
+        console.log(`Item clicked with ID: ${itemId}`);
+        navigate(`/home/second-hand/${itemId}`);
     } */
 
     const priceBodyTemplate = (rowData) => {
@@ -142,9 +147,11 @@ export default function SecondHand(){
                     dataKey="id"
                     filters={filters}
                     filterDisplay="menu"
+                    selectionMode='single'
+                    //selection={items[selected]}
                     onSelectionChange={(e) => {
                             const value = e.value
-                            handleChange(value.flowId, value.executionId, (value.number - 1))
+                            handleItemClick(value.id)
                         }}
                     loading={loading}
                     responsiveLayout="scroll"
