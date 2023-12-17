@@ -160,6 +160,10 @@ export default function SecondHand() {
         navigate(`/home/second-hand/second-hand-item`);//${id}
     };
 
+    function handleClick(){
+        navigate(`/home/messages`)
+      }
+
     /*     function handleChange(itemId) {
             setSelected(itemId)
             
@@ -255,7 +259,7 @@ export default function SecondHand() {
                             style={{ backgroundColor: 'green', color: 'white' }}
                             className="p-button-rounded p-button-secondary" 
                             aria-label="Bookmark"
-                            //onClick={handleClick}
+                            onClick={handleClick}
                         />
                     } 
                     />

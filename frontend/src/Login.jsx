@@ -25,7 +25,7 @@ export default function Login() {
         navigate(`/home`);
         else if(studentId==4321){
             console.log("login handle submit")
-        navigate(`/club-home`);
+            navigate(`/club-home`);
         }
     }
 
