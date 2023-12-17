@@ -1,5 +1,6 @@
 import { Card } from 'primereact/card';
 import { useEffect, useState } from "react";
+import { OrderList } from 'primereact/orderlist';
 //////////////////////////////////////////////////
 // Import necessary React and PrimeReact components
 import { Button } from 'primereact/button';
@@ -10,6 +11,9 @@ import { Fieldset } from 'primereact/fieldset';
 import AddSecondHand from './AddSecondHand';
 import React from 'react';
 import { Outlet, Link, Route, Routes } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 export default function Profile() {
 
@@ -22,37 +26,91 @@ export default function Profile() {
     const handleCloseModal = () => {
         setShowModal(false);
     };
+
+    const [customers1, setCustomers1] = useState([
+      { name: 'laptop', image: { url: 'https://www.hpstore.com.tr/hp-laptop-15-fg5012nt-intel-core-i5-1235u-8gb-ram-256gb-ssd-intel-iris-xe-graphics-156-inc-fhd-freedos-gumus-6g0c1ea-13468-17-B.jpg' }, price:  "1000.99", status: 'Active' },
+      // Add more data as needed
+  ]);
+  const [loading, setLoading] = useState(false);
+
     return (
         <div>
-            <h1>Your Profile</h1>
-            <ProfileLayout/>
+            <h1>My Profile</h1>
+           
             <Button icon="pi pi-plus"
                 className="absolute right-0 p-button-rounded p-button-info p-button-text"
-                aria-label="Add Donation"
+                style={{ marginRight: '100px' }}
+                label="Add Second-Hand Item"
+                onClick={handleAddClick} />
+              <Button icon="pi pi-plus"
+                className="absolute right-0 p-button-rounded p-button-info p-button-text"
+                style={{ marginRight: '357px' }}
+                label="Add Rent&Borrow Item"
+                onClick={handleAddClick} />
+              <Button icon="pi pi-plus"
+                className="absolute right-0 p-button-rounded p-button-info p-button-text"
+                style={{ marginRight: '610px' }}
+                label="Add Lost&Found Item"
                 onClick={handleAddClick} />
 
             {showModal && <AddSecondHand onClose={handleCloseModal} />}
+
+            <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Listed Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
+            <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Rented & Borrowed Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
+
         </div>
     );
 }
 
-function ProfileLayout() {
-    return (
-        <div>
-            {/* You can customize the layout as needed for the Club Home page */}
-            <nav>
-                <Button className="ml-3 text-color surface-300">
-                    <Link to=".">Club Home</Link>
-                </Button>
-                <Button className="ml-3 text-color surface-300">
-                    <Link to="/club-home/edit-profile">Edit Club Profile</Link>
-                </Button>
-            </nav>
-            <hr />
-            <Outlet />
-        </div>
-    );
-}
+
+
+
 
 /*     const [donations, setDonations] = useState([]);
       const [loading, setLoading] = useState(true);

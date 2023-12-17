@@ -58,6 +58,7 @@ export default function AddSecondHand({ onClose }) {
 
 
     return (
+        <div className="pt-7">
         <div className="modal round" style={{ backgroundColor: "lavender" }}>
             <div className="modal-content">
                 <span className="close" onClick={onClose}>
@@ -119,8 +120,9 @@ export default function AddSecondHand({ onClose }) {
                     >
                         Add Second Hand Listing</Button>
                 </form>
-                <p>This is the second hand listing form content.</p>
+                <p></p>
             </div>
+        </div>
         </div>
     );
 }
