@@ -233,7 +233,7 @@ export default function SecondHand() {
                         field = "image" 
                         body={(rowData)=>(
                             <img
-                            src = {rowData.image}
+                            src = {rowData.photo}
                             alt={rowData.name}
                             style = {{width: '200px', height: 'auto'}}
                             />

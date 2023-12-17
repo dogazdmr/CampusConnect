@@ -224,7 +224,7 @@ export default function Rent() {
   return (
     <div className="Rent & Borrow">
         <div className="card">
-            <h3>Second-Hand Items</h3>
+            <h3>Rent & Borrow Items</h3>
             <DataTable value={rentItems} paginator className="p-datatable-customers" rows={10}
                 dataKey="id" filters={filters2} filterDisplay="row" loading={loading2} responsiveLayout="scroll"
                 globalFilterFields={['name', 'price', 'description', 'conditionOfProduct', 'negotiable']} header={header2} emptyMessage="No items found.">
@@ -234,7 +234,7 @@ export default function Rent() {
                         field = "image" 
                         body={(rowData)=>(
                             <img
-                            src = {rowData.image}
+                            src = {rowData.photo}
                             alt={rowData.name}
                             style = {{width: '200px', height: 'auto'}}
                             />
