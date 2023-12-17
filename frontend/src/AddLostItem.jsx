@@ -15,6 +15,8 @@ export default function LostItemsForm({ onClose }) {
     const handleChange = (e) => {
         console.log(e.target.name);
 
+        setLostItem({ ...lostItem, [e.target.name]: e.target.value });
+
         /* const handleChange = (e) => {
             console.log(e.target.name);
     

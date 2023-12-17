@@ -3,11 +3,19 @@ import { Button } from 'primereact/button';
 import AddSecondHand from './AddSecondHand';
 import AddRentItem from './AddRentItem'; // Import your AddRentItem component
 import AddLostItem from './AddLostItem'; // Import your AddLostItem component
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 export default function Profile() {
   const [showSecondHandModal, setShowSecondHandModal] = useState(false);
   const [showRentItemModal, setShowRentItemModal] = useState(false);
   const [showLostItemModal, setShowLostItemModal] = useState(false);
+
+  const [customers1, setCustomers1] = useState([
+    { name: 'laptop', image: { url: 'https://www.hpstore.com.tr/hp-laptop-15-fg5012nt-intel-core-i5-1235u-8gb-ram-256gb-ssd-intel-iris-xe-graphics-156-inc-fhd-freedos-gumus-6g0c1ea-13468-17-B.jpg' }, price: "1000.99", status: 'Active' },
+    // Add more data as needed
+  ]);
+  const [loading, setLoading] = useState(false);
 
   const handleAddClick = (modalType) => {
     if (modalType === 'secondHand') {
@@ -55,7 +63,54 @@ export default function Profile() {
       {showRentItemModal && <AddRentItem onClose={handleCloseModal} />}
       {showLostItemModal && <AddLostItem onClose={handleCloseModal} />}
 
-      {/* rest of your component */}
+      <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Listed Second-Hand Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
+            <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Listed Rent & Borrow Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
     </div>
   );
 }
@@ -119,9 +174,7 @@ import { Column } from 'primereact/column';
         label="Add Lost&Found Item"
         onClick={handleAddClick} />
 
-<<<<<<< HEAD
       {showModal && <AddSecondHand onClose={handleCloseModal} />}
-=======
             <div className="datatable-scroll-demo pt-7">
                 <div className="card">
                     <h2>Listed Second-Hand Items</h2>
@@ -170,7 +223,6 @@ import { Column } from 'primereact/column';
                     </DataTable>
                 </div>
             </div>
->>>>>>> origin/master
 
       <div className="datatable-scroll-demo pt-7">
         <div className="card">

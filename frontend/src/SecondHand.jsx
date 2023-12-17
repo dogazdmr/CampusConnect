@@ -34,23 +34,48 @@ export default function SecondHand() {
     
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [globalFilterValue2, setGlobalFilterValue2] = useState('');
-    const [loading, setLoading] = useState(true);
+    //const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);
 
 
     //const initialItems = jsonData
-    const initialItems = [
-        { id: 1, name: "Laptop", price: 800, description: "yeme de yanında yat LALALLALAL uzun bi sey yazınca noluyo ona bakıyorum teşekkürler", image: 'https://unsplash.com/photos/0rvKw0fDiHk/download?ixid=M3wxMjA3fDF8MXxhbGx8MXx8fHx8fDJ8fDE3MDI2NzIyMjh8&force=true', conditionOfProduct: 4.5, negotiable: false },
-        { id: 2, name: "Smartphone", price: 500, description: "yeme de yanında yat", image: '', conditionOfProduct: 6.9, negotiable: false },
-        { id: 3, name: "Camera", price: 1200, image: '', sellerRating: 3.8 },
-        { id: 4, name: "Programming Languages Book", price: 800, course: "CS319", image: '', sellerRating: 4.5 },
-        { id: 5, name: "Digital Design Book", price: 1500, course: "CS223/CS224", image: '', sellerRating: 4.2 },
-        { id: 6, name: "Linear Algebra Book", price: 1200, course: "MATH225", image: '', sellerRating: 3.8 },
-        // Add more items as needed
-    ];
+    //const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+    const [rentItems, setRentItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/secondhand/');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.json();
+            setRentItems(result);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading2(false);
+        }
+    };
+    fetchData();
+}, []);
+
+/* const handleSearch = async () => {
+    try {
+        const response = await fetch(`/api/rentitems/search/${searchTerm}`);
+        const data = await response.json();
+        setRentItems(data);
+    } catch (error) {
+        console.error('Error searching rent & borrowlistings:', error);
+    }
+}; */
 
     useEffect(() => {
-        setItems2(initialItems);
+        //setItems2(initialItems);
         setLoading2(false);
         initFilters();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -199,7 +224,7 @@ export default function SecondHand() {
         <div className="Second-Hand Items">
             <div className="card">
                 <h3>Second-Hand Items</h3>
-                <DataTable value={initialItems} paginator className="p-datatable-customers" rows={10}
+                <DataTable value={rentItems} paginator className="p-datatable-customers" rows={10}
                     dataKey="id" filters={filters2} filterDisplay="row" loading={loading2} responsiveLayout="scroll"
                     globalFilterFields={['name', 'price', 'description', 'conditionOfProduct', 'negotiable']} header={header2} emptyMessage="No customers found.">
                     <Column field="name" header="Name" filter filterPlaceholder="Search" style={{ minWidth: '15rem' }} />
