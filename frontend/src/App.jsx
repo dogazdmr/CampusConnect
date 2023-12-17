@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import { Routes, Route, Outlet, Link, useRoutes, useNavigate, useLocation } from "react-router-dom"
 //import { BrowserRouter as Router, Route, Switch, Link, Outlet } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
@@ -28,7 +28,7 @@ import "primeicons/primeicons.css";
 
 function App() {
 
-  const history = useHistory();
+  /* const history = useHistory();
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
     if (!isLogin) {
       history.push('/login');
     }
-  }, [isLogin, history]);
+  }, [isLogin, history]); */
 
   const routes= [
     {
