@@ -119,7 +119,58 @@ import { Column } from 'primereact/column';
         label="Add Lost&Found Item"
         onClick={handleAddClick} />
 
+<<<<<<< HEAD
       {showModal && <AddSecondHand onClose={handleCloseModal} />}
+=======
+            <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Listed Second-Hand Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
+            <div className="datatable-scroll-demo pt-7">
+                <div className="card">
+                    <h2>Listed Rent & Borrow Items</h2>
+                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            field="image"
+                            header="Image"
+                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+                            style={{ minWidth: '200px' }}
+                        ></Column>
+                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+                        <Column
+                            body={(rowData) => (
+                            <span>
+                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
+                                
+                            </span>
+                            )}
+                            style={{ minWidth: '100px' }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </div>
+>>>>>>> origin/master
 
       <div className="datatable-scroll-demo pt-7">
         <div className="card">
