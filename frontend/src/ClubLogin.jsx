@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ClubLogin = ({ onLoginSuccess }) => {
+const ClubLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');

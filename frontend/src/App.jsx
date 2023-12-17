@@ -1,3 +1,91 @@
+/* import React from 'react';
+import { useRoutes, useNavigate, useLocation, Outlet } from 'react-router-dom';
+import Login from './Login';
+import ClubHome from './ClubHome';
+import Home from './Home';
+import ClubLogin from './ClubLogin';
+import SecondHand from './SecondHand';
+import Rent from './Rent';
+import LostandFound from './LostandFound';
+import Donations from './Donations'; 
+import Profile from './Profile';
+import Messages from './Messages';
+// ... other imports ...
+
+import 'primeflex/primeflex.min.css'
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+//core
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
+function App() {
+  const routes = [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true, element: <Login /> },
+        { path: "club-home", element: <ClubHome /> },
+        { path: "club-login", element: <ClubLogin /> },
+        { 
+          path: "home", 
+          element: <Home />, 
+          children: [
+            { path: "second-hand", element: <SecondHand /> },
+            { path: "rent", element: <Rent /> },
+            { path: "lost-and-found", element: <LostandFound /> },
+            { path: "donations", element: <Donations /> },
+            { path: "profile", element: <Profile /> },
+            { path: "messages", element: <Messages /> },
+          ]
+        },
+        // Uncomment below for a catch-all "No Match" route
+        // { path: "*", element: <NoMatch /> },
+      ],
+    },
+  ];
+
+  const element = useRoutes(routes);
+  return <>{element}</>;
+}
+
+function Layout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isNotLoginPath = location.pathname !== '/';
+
+  const handleLogout = () => {
+    localStorage.removeItem('clubId'); // Clear clubId on logout
+    navigate('/'); // Navigate to root on logout
+  };
+
+  return (
+    <div className="p-5 pl-7">
+      <nav>
+        <ul className="list-none d-flex align-items-center">
+          {isNotLoginPath && (
+            <>
+              <li>
+                {/* Your logo and logout button *//*}
+                <button onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+      <hr />
+      <Outlet />
+    </div>
+  );
+}
+
+export default App; */
+
+
+
 import React, { useEffect, useState } from 'react';
 //import { useHistory } from 'react-router-dom';
 import { Routes, Route, Outlet, Link, useRoutes, useNavigate, useLocation } from "react-router-dom"
@@ -83,14 +171,14 @@ function App() {
             },
             {
               path: "/home/donations",
-              element: <Donations />,
+              element: <Donations />, 
               /* children: 
                 {
                   path: "/home/donations/donation-form",
                   element: <DonationForm />
                 },
               ] */
-            },
+             },
             {
               path: "/home/messages",
               element: <Messages />,
@@ -176,10 +264,10 @@ function NoMatch() {
   );
 }
 
-export default App;
+export default App; 
 
 
-
+//////////////////////////////////////////////////////////////////////////////////
 /* const App = () => {
 
 
