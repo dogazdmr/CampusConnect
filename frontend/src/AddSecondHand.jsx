@@ -1,65 +1,61 @@
 import { useState } from 'react';
-
 import { InputTextarea } from 'primereact/inputtextarea';
-
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { Slider } from 'primereact/slider';
-
-import { MultiSelect } from 'primereact/multiselect';
- 
-import { SelectButton } from 'primereact/selectbutton';
-
 
 export default function AddSecondHand({ onClose }) {
-    const [secondHandListing, setSecondHandListing] = useState({
-        clubName: '',
-        description: ''
+    const [sale, setSale] = useState({
+        id: null,
+        name: '',
+        price: '',
+        description: '',
+        sellerId: null,
+        photo: '', // Assuming a photo URL
+        conditionOfProduct: '',
+        negotiable: false,
     });
-    const [value1, setValue1] = useState(null);
 
+    /* const handleChange = (e) => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        setSale({ ...sale, [e.target.name]: value });
+    }; */
     const handleChange = (e) => {
-        setSecondHandListing({ ...secondHandListing, [e.target.name]: e.target.value });
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setSale({
+            ...sale,
+            [e.target.name]: value,
+        });
     };
 
-    const [negotiabale, setNegotiable] = useState('Negotiable');
-    const options = ['Negotiable', 'Non-Negotiable'];
 
-    const [selectedProduct, setSelectedProduct] = useState(null);
-    const productTypes = [
-        { name: 'Book', code: 'NY' },
-        { name: 'Electronic', code: 'RM' },
-        { name: 'Furniture', code: 'LDN' }
-    ];
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/api/second-hand/', {
+            const response = await fetch('http://localhost:8080/api/secondhand/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(secondHandListing)
+                body: JSON.stringify(sale),
             });
 
             if (!response.ok) {
-                throw new Error('HTTP error! Status: ${response.status}');
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
             const result = await response.json();
             console.log(result); // Process the response data as needed
             // Optionally, reset the form or provide user feedback
         } catch (error) {
-            console.error('Error adding donation:', error);
+            console.error('Error adding sale:', error);
             // Optionally, provide user feedback
         }
     };
 
-
     return (
-        <div className="pt-7">
-        <div className="modal round" style={{ backgroundColor: "lavender" }}>
+        <div className="modal round" style={{ backgroundColor: 'lavender' }}>
             <div className="modal-content">
                 <span className="close" onClick={onClose}>
                     &times;
@@ -67,18 +63,18 @@ export default function AddSecondHand({ onClose }) {
                 <form onSubmit={handleSubmit}>
                     <InputText
                         type="text"
-                        name="clubName"
-                        value={secondHandListing.productName}
+                        name="name"
+                        value={sale.name}
                         onChange={handleChange}
-                        placeholder="Product Name"
+                        placeholder="Item Name"
                         style={{ width: '400px' }}
                         className="mb-4 ml-4"
                     />
                     <br />
                     <InputText
                         type="text"
-                        name="clubName"
-                        value={secondHandListing.price}
+                        name="price"
+                        value={sale.price}
                         onChange={handleChange}
                         placeholder="Price"
                         style={{ width: '400px' }}
@@ -87,44 +83,51 @@ export default function AddSecondHand({ onClose }) {
                     <br />
                     <InputTextarea
                         name="description"
-                        value={secondHandListing.description}
+                        value={sale.description}
                         onChange={handleChange}
                         placeholder="Description"
                         style={{ width: '400px', height: '300px' }}
                         className="mb-4 ml-4"
                     />
                     <br />
-                    <MultiSelect className="mb-4 ml-4" value={selectedProduct} options={productTypes} onChange={(e) => setSelectedProduct(e.value)} optionLabel="name" placeholder="Select a Product Type" maxSelectedLabels={1} />
-                    <br />
-                    <p className="mb-4 ml-4">Condition: {value1}</p>
-                    <Slider
-                        value={value1}
-                        onChange={(e) => setValue1(e.value)}
-                        style={{ width: '400px' }}
-                        className="mb-4 ml-4"
-                        max={10}
-                    />
-                    <br />
-                    <SelectButton
-                        value={negotiabale}
-                        options={options}
-                        onChange={(e) => setNegotiable(e.value)}
+                    <InputText
+                        type="text"
+                        name="photo"
+                        value={sale.photo}
+                        onChange={handleChange}
+                        placeholder="Photo URL"
                         style={{ width: '400px' }}
                         className="mb-4 ml-4"
                     />
                     <br />
-                    <Button
-                        type="submit"
+                    <InputText
+                        type="text"
+                        name="condition"
+                        value={sale.conditionOfProduct}
+                        onChange={handleChange}
+                        placeholder="Condition"
+                        style={{ width: '400px' }}
                         className="mb-4 ml-4"
-                        style={{ backgroundColor: "indigo" }}
-                    >
-                        Add Second Hand Listing</Button>
+                    />
+                    <br />
+                    <div>
+                        <label>
+                            Negotiable:
+                            <input
+                                type="checkbox"
+                                name="negotiable"
+                                checked={sale.negotiable}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <br />
+                    <Button type="submit" style={{ backgroundColor: 'indigo' }}>
+                        Add Sale
+                    </Button>
                 </form>
-                <p></p>
+                <p>This is the second-hand sale form content.</p>
             </div>
-        </div>
         </div>
     );
 }
-
-

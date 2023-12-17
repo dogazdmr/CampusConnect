@@ -1,4 +1,68 @@
-import { Card } from 'primereact/card';
+import { useState } from 'react';
+import { Button } from 'primereact/button';
+import AddSecondHand from './AddSecondHand';
+import AddRentItem from './AddRentItem'; // Import your AddRentItem component
+import AddLostItem from './AddLostItem'; // Import your AddLostItem component
+
+export default function Profile() {
+  const [showSecondHandModal, setShowSecondHandModal] = useState(false);
+  const [showRentItemModal, setShowRentItemModal] = useState(false);
+  const [showLostItemModal, setShowLostItemModal] = useState(false);
+
+  const handleAddClick = (modalType) => {
+    if (modalType === 'secondHand') {
+      setShowSecondHandModal(true);
+    } else if (modalType === 'rentBorrow') {
+      setShowRentItemModal(true);
+    } else if (modalType === 'lostFound') {
+      setShowLostItemModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowSecondHandModal(false);
+    setShowRentItemModal(false);
+    setShowLostItemModal(false);
+  };
+
+  return (
+    <div>
+      <h1>My Profile</h1>
+
+      <Button
+        icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '100px' }}
+        label="Add Second-Hand Item"
+        onClick={() => handleAddClick('secondHand')}
+      />
+      <Button
+        icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '357px' }}
+        label="Add Rent&Borrow Item"
+        onClick={() => handleAddClick('rentBorrow')}
+      />
+      <Button
+        icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '610px' }}
+        label="Add Lost&Found Item"
+        onClick={() => handleAddClick('lostFound')}
+      />
+
+      {showSecondHandModal && <AddSecondHand onClose={handleCloseModal} />}
+      {showRentItemModal && <AddRentItem onClose={handleCloseModal} />}
+      {showLostItemModal && <AddLostItem onClose={handleCloseModal} />}
+
+      {/* rest of your component */}
+    </div>
+  );
+}
+
+
+
+/* import { Card } from 'primereact/card';
 import { useEffect, useState } from "react";
 import { OrderList } from 'primereact/orderlist';
 //////////////////////////////////////////////////
@@ -15,98 +79,100 @@ import ReactDOM from 'react-dom';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-export default function Profile() {
+ */
 
-    const [showModal, setShowModal] = useState(false);
+/* export default function Profile() {
 
-    const handleAddClick = () => {
-        setShowModal(true);
-    };
+  const [showModal, setShowModal] = useState(false);
 
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+  const handleAddClick = () => {
+    setShowModal(true);
+  };
 
-    const [customers1, setCustomers1] = useState([
-      { name: 'laptop', image: { url: 'https://www.hpstore.com.tr/hp-laptop-15-fg5012nt-intel-core-i5-1235u-8gb-ram-256gb-ssd-intel-iris-xe-graphics-156-inc-fhd-freedos-gumus-6g0c1ea-13468-17-B.jpg' }, price:  "1000.99", status: 'Active' },
-      // Add more data as needed
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const [customers1, setCustomers1] = useState([
+    { name: 'laptop', image: { url: 'https://www.hpstore.com.tr/hp-laptop-15-fg5012nt-intel-core-i5-1235u-8gb-ram-256gb-ssd-intel-iris-xe-graphics-156-inc-fhd-freedos-gumus-6g0c1ea-13468-17-B.jpg' }, price: "1000.99", status: 'Active' },
+    // Add more data as needed
   ]);
   const [loading, setLoading] = useState(false);
 
-    return (
-        <div>
-            <h1>My Profile</h1>
-           
-            <Button icon="pi pi-plus"
-                className="absolute right-0 p-button-rounded p-button-info p-button-text"
-                style={{ marginRight: '100px' }}
-                label="Add Second-Hand Item"
-                onClick={handleAddClick} />
-              <Button icon="pi pi-plus"
-                className="absolute right-0 p-button-rounded p-button-info p-button-text"
-                style={{ marginRight: '357px' }}
-                label="Add Rent&Borrow Item"
-                onClick={handleAddClick} />
-              <Button icon="pi pi-plus"
-                className="absolute right-0 p-button-rounded p-button-info p-button-text"
-                style={{ marginRight: '610px' }}
-                label="Add Lost&Found Item"
-                onClick={handleAddClick} />
+  return (
+    <div>
+      <h1>My Profile</h1>
 
-            {showModal && <AddSecondHand onClose={handleCloseModal} />}
+      <Button icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '100px' }}
+        label="Add Second-Hand Item"
+        onClick={handleAddClick} />
+      <Button icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '357px' }}
+        label="Add Rent&Borrow Item"
+        onClick={handleAddClick} />
+      <Button icon="pi pi-plus"
+        className="absolute right-0 p-button-rounded p-button-info p-button-text"
+        style={{ marginRight: '610px' }}
+        label="Add Lost&Found Item"
+        onClick={handleAddClick} />
 
-            <div className="datatable-scroll-demo pt-7">
-                <div className="card">
-                    <h2>Listed Items</h2>
-                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
-                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
-                        <Column
-                            field="image"
-                            header="Image"
-                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
-                            style={{ minWidth: '200px' }}
-                        ></Column>
-                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
-                        <Column
-                            body={(rowData) => (
-                            <span>
-                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
-                                
-                            </span>
-                            )}
-                            style={{ minWidth: '100px' }}
-                        ></Column>
-                    </DataTable>
-                </div>
-            </div>
-            <div className="datatable-scroll-demo pt-7">
-                <div className="card">
-                    <h2>Rented & Borrowed Items</h2>
-                    <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
-                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
-                        <Column
-                            field="image"
-                            header="Image"
-                            body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
-                            style={{ minWidth: '200px' }}
-                        ></Column>
-                        <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
-                        <Column
-                            body={(rowData) => (
-                            <span>
-                                <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)}  style={{ backgroundColor: 'red', color: 'white' }}/>
-                                
-                            </span>
-                            )}
-                            style={{ minWidth: '100px' }}
-                        ></Column>
-                    </DataTable>
-                </div>
-            </div>
+      {showModal && <AddSecondHand onClose={handleCloseModal} />}
 
+      <div className="datatable-scroll-demo pt-7">
+        <div className="card">
+          <h2>Listed Items</h2>
+          <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+            <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+            <Column
+              field="image"
+              header="Image"
+              body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+              style={{ minWidth: '200px' }}
+            ></Column>
+            <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+            <Column
+              body={(rowData) => (
+                <span>
+                  <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)} style={{ backgroundColor: 'red', color: 'white' }} />
+
+                </span>
+              )}
+              style={{ minWidth: '100px' }}
+            ></Column>
+          </DataTable>
         </div>
-    );
-}
+      </div>
+      <div className="datatable-scroll-demo pt-7">
+        <div className="card">
+          <h2>Rented & Borrowed Items</h2>
+          <DataTable value={customers1} scrollable scrollHeight="400px" loading={loading}>
+            <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+            <Column
+              field="image"
+              header="Image"
+              body={(rowData) => <img src={rowData.image.url} alt={rowData.name} style={{ width: '100px', height: 'auto' }} />}
+              style={{ minWidth: '200px' }}
+            ></Column>
+            <Column field="price" header="Price" style={{ minWidth: '200px' }}></Column>
+            <Column
+              body={(rowData) => (
+                <span>
+                  <Button label="Delete" icon="pi pi-trash" onClick={() => console.log(rowData)} style={{ backgroundColor: 'red', color: 'white' }} />
+
+                </span>
+              )}
+              style={{ minWidth: '100px' }}
+            ></Column>
+          </DataTable>
+        </div>
+      </div>
+
+    </div>
+  );
+} */
 
 
 
@@ -119,7 +185,7 @@ export default function Profile() {
         const [donations, setDonations] = useState([]);
         // State to store the search term
         const [searchTerm, setSearchTerm] = useState('');
-    
+
       useEffect(() => {
         const fetchData = async () => {
           try {
@@ -135,18 +201,18 @@ export default function Profile() {
             setLoading(false);
           }
         };
-    
+
         fetchData();
       }, []);
-    
+
       if (loading) {
         return <p>Loading...</p>;
       }
-    
+
       if (error) {
         return <p>Error fetching data: {error.message}</p>;
       }
-    
+
       // Function to handle search
       const handleSearch = async () => {
         try {

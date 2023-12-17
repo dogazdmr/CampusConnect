@@ -56,7 +56,7 @@ function Home() {
 
 function Layout() {
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const items = [
     { label: 'Second Hand', icon: 'pi pi-fw pi-tag', to: '/home/second-hand' },
@@ -82,7 +82,7 @@ function Layout() {
               label={item.label}
               icon={item.icon}
               className={activeIndex === index ? 'active-tab' : ''}
-              
+              onClick={() => setActiveIndex(index)}
             />
           ))}
         </TabMenu>

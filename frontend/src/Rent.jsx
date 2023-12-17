@@ -26,20 +26,42 @@ export default function Rent() {
   });
   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+    const [rentItems, setRentItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
-  //const initialItems = jsonData
-  const initialItems = [
-    { id: 1, productName: "Laptop", price: 800, image: 'https://unsplash.com/photos/0rvKw0fDiHk/download?ixid=M3wxMjA3fDF8MXxhbGx8MXx8fHx8fDJ8fDE3MDI2NzIyMjh8&force=true', sellerRating: 4.5 },
-    { id: 2, name: "Smartphone", price: 500, image: 'smartphone.jpg', sellerRating: 4.2 },
-    { id: 3, name: "Camera", price: 1200, image: 'camera.jpg', sellerRating: 3.8 },
-    { id: 4, name: "Programming Languages Book", price: 800, course: "CS319", image: 'laptop.jpg', sellerRating: 4.5 },
-    { id: 5, name: "Digital Design Book", price: 1500, course: "CS223/CS224", image: 'smartphone.jpg', sellerRating: 4.2 },
-    { id: 6, name: "Linear Algebra Book", price: 1200, course: "MATH225", image: 'camera.jpg', sellerRating: 3.8 },
-    // Add more items as needed
-  ];
+  
 
   useEffect(() => {
-    setItems(initialItems);
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/rentitems/');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.json();
+            setRentItems(result);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    fetchData();
+}, []);
+
+const handleSearch = async () => {
+    try {
+        const response = await fetch(`/api/rentitems/search/${searchTerm}`);
+        const data = await response.json();
+        setRentItems(data);
+    } catch (error) {
+        console.error('Error searching rent & borrowlistings:', error);
+    }
+};
+
+  useEffect(() => {
+    //setRentItems(initialItems);
     setLoading(false);
     initFilters();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -100,7 +122,7 @@ export default function Rent() {
     //setSelected(itemId)
     // Navigate to the item's page using React Router or any other routing mechanism
     console.log(`Item clicked with ID: ${id}`);
-    navigate(`/home/second-hand/second-hand-item`);//${id}
+    //navigate(`/home/second-hand/second-hand-item`);//${id}
   };
 
   /*     function handleChange(itemId) {
@@ -120,6 +142,15 @@ export default function Rent() {
 
   const conditionBodyTemplate = (rowData) => {
     return `$${rowData.conditionOfProduct}`;
+  };
+
+  const negotiableBodyTemplate = (rowData) => {
+    if(rowData.isNegotiable == true){
+    return `{Negotiable}`;
+    }
+    else{
+      return `{Non-Negotiable}`;
+    }
   };
 
   const sellerRatingBodyTemplate = (rowData) => {
@@ -143,7 +174,7 @@ export default function Rent() {
         <h5>Filter Menu</h5>
         <p>Filters are displayed in an overlay.</p>
         <DataTable
-          value={items}
+          value={rentItems}
           paginator
           className="p-datatable-items"
           //style={{backgroundColor: "blue"}}
@@ -211,6 +242,14 @@ export default function Rent() {
             //filterElement={sellerRatingFilterTemplate}
             style={{ minWidth: '12rem' }}
             body={conditionBodyTemplate}
+          />
+          <Column
+            field="negotiable"
+            header="Negotiation Status"
+            //filter
+            //filterElement={sellerRatingFilterTemplate}
+            style={{ minWidth: '12rem' }}
+            body={negotiableBodyTemplate}
           />
         </DataTable>
       </div>

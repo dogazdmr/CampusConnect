@@ -1,5 +1,6 @@
 import { Card } from 'primereact/card';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 //////////////////////////////////////////////////
 // Import necessary React and PrimeReact components
 import { Button } from 'primereact/button';
@@ -9,6 +10,8 @@ import { Divider } from 'primereact/divider';
 import { Fieldset } from 'primereact/fieldset';
 
 export default function LostandFound() {
+
+  const navigate = useNavigate()
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,14 +55,18 @@ export default function LostandFound() {
     return <p>Error fetching data: {error.message}</p>;
   }
 
+  function handleClick(){
+    navigate(`/home/messages`)
+  }
+
   const itemTemplate = (item) => {
     return (
       <div className="p-col-12 p-md-4">
         <Card title={`${item.itemName}`} style={{ height: '400px' }}>
           <p>Found on: {item.itemPlace}</p>
-          <p>End Date: {item.edate}</p>
-          <p>Location Found: {item.location}</p>
-          <p>
+          <p>Description: {item.itemDescription}</p>
+          <p>Status (Lost or Found): {(item.lostOrFound == true)? "Lost" : "Found"} </p>
+          {/* <p>
             Details:
             <ul>
               {item.items &&
@@ -67,12 +74,13 @@ export default function LostandFound() {
                   <li key={index}>{item}</li>
                 ))}
             </ul>
-          </p>
-          {/* <Button
+          </p> */}
+          <Button
             label="Contact"
             icon="pi pi-info-circle"
             className="p-button-text"
-          /> */}
+            onClick={handleClick}
+          />
         </Card>
       </div>
     );
