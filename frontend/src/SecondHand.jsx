@@ -226,7 +226,7 @@ export default function SecondHand() {
                 <h3>Second-Hand Items</h3>
                 <DataTable value={rentItems} paginator className="p-datatable-customers" rows={10}
                     dataKey="id" filters={filters2} filterDisplay="row" loading={loading2} responsiveLayout="scroll"
-                    globalFilterFields={['name', 'price', 'description', 'conditionOfProduct', 'negotiable']} header={header2} emptyMessage="No customers found.">
+                    globalFilterFields={['name', 'price', 'description', 'conditionOfProduct', 'negotiable']} header={header2} emptyMessage="No items found.">
                     <Column field="name" header="Name" filter filterPlaceholder="Search" style={{ minWidth: '15rem' }} />
                     <Column 
                         header="Photo" 

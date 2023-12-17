@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import { classNames } from 'primereact/utils';
+import { classNames } from 'primereact/utils';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -18,17 +18,31 @@ export default function Rent() {
   const navigate = useNavigate();
   //const [selected, setSelected] = useState(-1)
   const [items, setItems] = useState(null);
-  const [filters, setFilters] = useState({
-    'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
-    'name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-    'price': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-    'sellerRating': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.GTE }] },
+  const [items2, setItems2] = useState(null);
+  const [filters, setFilters] = useState(null)
+  const [filters2, setFilters2] = useState({
+          'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
+          'name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+          'price': { operator: FilterOperator.EQUALS, value: null, matchMode: FilterMatchMode.EQUALS },
+          'description': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+          'conditionOfProduct': { operator: FilterOperator.EQUALS, value: null, matchMode: FilterMatchMode.EQUALS },
+          'isNegotiable': { value: null, matchMode: FilterMatchMode.EQUALS },
+          'rentDay': { operator: FilterOperator.EQUALS, value: null, matchMode: FilterMatchMode.EQUALS },
+
   });
+  
   const [globalFilterValue, setGlobalFilterValue] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [globalFilterValue2, setGlobalFilterValue2] = useState('');
+  //const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+
+
+  //const initialItems = jsonData
+  //const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-    const [rentItems, setRentItems] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [rentItems, setRentItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   
 
@@ -44,13 +58,13 @@ export default function Rent() {
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setLoading2(false);
         }
     };
     fetchData();
 }, []);
 
-const handleSearch = async () => {
+/* const handleSearch = async () => {
     try {
         const response = await fetch(`/api/rentitems/search/${searchTerm}`);
         const data = await response.json();
@@ -58,11 +72,11 @@ const handleSearch = async () => {
     } catch (error) {
         console.error('Error searching rent & borrowlistings:', error);
     }
-};
+}; */
 
   useEffect(() => {
     //setRentItems(initialItems);
-    setLoading(false);
+    setLoading2(false);
     initFilters();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -78,6 +92,15 @@ const handleSearch = async () => {
     setFilters(_filters);
     setGlobalFilterValue(value);
   };
+
+  const onGlobalFilterChange2 = (e) => {
+    const value = e.target.value;
+    let _filters2 = { ...filters2 };
+    _filters2['global'].value = value;
+
+    setFilters2(_filters2);
+    setGlobalFilterValue2(value);
+}
 
   const initFilters = () => {
     setFilters({
@@ -106,6 +129,16 @@ const handleSearch = async () => {
       </div>
     );
   };
+  const renderHeader2 = () => {
+    return (
+        <div className="flex justify-content-end">
+            <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText value={globalFilterValue2} onChange={onGlobalFilterChange2} placeholder="Keyword Search" />
+            </span>
+        </div>
+    )
+}
 
   const nameBodyTemplate = (rowData) => {
     return (
@@ -132,9 +165,21 @@ const handleSearch = async () => {
         navigate(`/home/second-hand/${itemId}`);
     } */
 
-  const priceBodyTemplate = (rowData) => {
-    return `$${rowData.price}`;
-  };
+    const priceBodyTemplate = (rowData) => {
+      return `₺${rowData.price}`;
+    };
+    const priceFilterTemplate = (options) => {
+      return <InputNumber value={options.value} onChange={(e) => options.filterCallback(e.value, options.index)} mode="currency" currency="TRY" locale="tr-TR" />
+    }
+
+    const verifiedBodyTemplate = (rowData) => {
+      return <i className={classNames('pi', { 'true-icon pi-check-circle': rowData.isNegotiable, 'false-icon pi-times-circle': !rowData.isNegotiable })}></i>;
+  }
+
+  const verifiedRowFilterTemplate = (options) => {
+      return <TriStateCheckbox value={options.value} onChange={(e) => options.filterApplyCallback(e.value)} />
+  }
+  const header2 = renderHeader2();
 
   const descriptionBodyTemplate = (rowData) => {
     return `$${rowData.description}`;
@@ -152,7 +197,15 @@ const handleSearch = async () => {
       return `{Non-Negotiable}`;
     }
   };
-
+  const durationBodyTemplate = (rowData) => {
+    return (
+      <React.Fragment>
+        <i className="pi pi-calendar" style={{ color: 'blue' }}></i>
+        {rowData.rentDay} days
+      </React.Fragment>
+    );
+  };
+  
   const sellerRatingBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
@@ -169,90 +222,47 @@ const handleSearch = async () => {
   const header = renderHeader();
 
   return (
-    <div className="second-hand-sales-page">
-      <div className="card">
-        <h5>Filter Menu</h5>
-        <p>Filters are displayed in an overlay.</p>
-        <DataTable
-          value={rentItems}
-          paginator
-          className="p-datatable-items"
-          //style={{backgroundColor: "blue"}}
-          showGridlines
-          rows={10}
-          dataKey="id"
-          filters={filters}
-          filterDisplay="menu"
-          selectionMode='single'
-          //selection={items[selected]}
-          onSelectionChange={(e) => {
-            const value = e.value
-            handleItemClick(value.id)
-          }}
-          loading={loading}
-          responsiveLayout="scroll"
-          globalFilterFields={['name', 'price', 'sellerRating']}
-          header={header}
-          emptyMessage="No items found."
-        >
-          <Column
-            field="name"
-            header="Item Name"
-            filter
-            filterPlaceholder="Search by name"
-            style={{ minWidth: '12rem' }}
-            body={nameBodyTemplate}
-          />
-          <Column
-            field="image"
-            header="Image"
-            body={(rowData) => (
-              <img
-                src={rowData.photo}
-                alt={rowData.name}
-                style={{ width: '100px', height: '100px' }}//, borderRadius: '50%' 
-              />
-            )}
-            filter
-            filterField='Filter'
-            filterPlaceholder="Search by image"
-            style={{ minWidth: '6rem' }}
-          />
-          <Column
-            field="price"
-            header="Price"
-            filter
-            filterPlaceholder="Search by price"
-            style={{ minWidth: '12rem' }}
-            body={priceBodyTemplate}
-          />
-          <Column
-            field="description"
-            header="Description"
-            body={descriptionBodyTemplate}
-            filter
-            filterField='Filter'
-            filterPlaceholder="Search by image"
-            style={{ minWidth: '6rem' }}
-          />
-          <Column
-            field="condition"
-            header="Condition"
-            //filter
-            //filterElement={sellerRatingFilterTemplate}
-            style={{ minWidth: '12rem' }}
-            body={conditionBodyTemplate}
-          />
-          <Column
-            field="negotiable"
-            header="Negotiation Status"
-            //filter
-            //filterElement={sellerRatingFilterTemplate}
-            style={{ minWidth: '12rem' }}
-            body={negotiableBodyTemplate}
-          />
-        </DataTable>
-      </div>
+    <div className="Rent & Borrow">
+        <div className="card">
+            <h3>Second-Hand Items</h3>
+            <DataTable value={rentItems} paginator className="p-datatable-customers" rows={10}
+                dataKey="id" filters={filters2} filterDisplay="row" loading={loading2} responsiveLayout="scroll"
+                globalFilterFields={['name', 'price', 'description', 'conditionOfProduct', 'negotiable']} header={header2} emptyMessage="No items found.">
+                  <Column field="name" header="Name" filter filterPlaceholder="Search" style={{ minWidth: '15rem' }} />
+                  <Column 
+                        header="Photo" 
+                        field = "image" 
+                        body={(rowData)=>(
+                            <img
+                            src = {rowData.image}
+                            alt={rowData.name}
+                            style = {{width: '200px', height: 'auto'}}
+                            />
+                        )}
+                        filterField="description" 
+                        showFilterMenu={false} 
+                        filterMenuStyle={{ width: '14rem' }} 
+                        style={{ minWidth: '14rem' }} 
+                    />
+                      <Column header="Price" filterField="price" dataType="numeric" style={{ minWidth: '15rem' }} body={priceBodyTemplate} filter filterElement={priceFilterTemplate} />
+                      <Column header="Description" field = "description" filterField="description" showFilterMenu={false} filterMenuStyle={{ width: '8rem' }} style={{ minWidth: '10rem' }} />
+                      <Column field="conditionOfProduct" header="Condition" style={{ minWidth: '10rem' }}sortable></Column>
+                      <Column field="isNegotiable" header="Negotiability" dataType="boolean" style={{ minWidth: '10rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedRowFilterTemplate} />
+                      <Column header="Contact" style={{ minWidth: '10rem' }}
+                        body={
+                        <Button
+                            icon="pi pi-info-circle"
+                            style={{ backgroundColor: 'green', color: 'white' }}
+                            className="p-button-rounded p-button-secondary" 
+                            aria-label="Bookmark"
+                            //onClick={handleClick}
+                        />
+                    } 
+                    />
+                    <Column field="rentDay" header="Available For:" style={{ minWidth: '10rem' }} body={durationBodyTemplate}sortable></Column>
+
+            </DataTable>
+        </div>
     </div>
-  );
+);
 }
