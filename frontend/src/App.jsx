@@ -9,6 +9,7 @@ import { Button } from 'primereact/button';
 import Login from './Login';
 import Home from './Home';
 import ClubHome from './ClubHome';
+import ClubLogin from './ClubLogin';
 import SecondHand from './SecondHand';
 import SecondHandItem from './SecondHandItem';
 import Rent from './Rent';
@@ -27,22 +28,6 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 function App() {
-
-  /* const history = useHistory();
-  const [isLogin, setIsLogin] = useState(false);
-
-  useEffect(() => {
-    // Check if the user is logged in (use your own logic here)
-    const storedIsLogin = localStorage.getItem('is_login') === 'true';
-    setIsLogin(storedIsLogin);
-  }, []);
-
-  useEffect(() => {
-    // Redirect to the login page if not logged in
-    if (!isLogin) {
-      history.push('/login');
-    }
-  }, [isLogin, history]); */
 
   const routes= [
     {
@@ -81,6 +66,20 @@ function App() {
             {
               path: "/home/lost-and-found",
               element: <LostandFound />,
+            },
+            {
+              path: "/home/club-login",
+              element:<ClubLogin />,
+              children: {
+                path: "/club-home",
+                element: <ClubHome />,
+                children: [
+                  {
+                    path: "/club-home/edit-profile",
+                    element: <EditProfile />,
+                  },
+                ]
+              },
             },
             {
               path: "/home/donations",
