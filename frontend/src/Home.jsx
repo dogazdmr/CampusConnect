@@ -59,6 +59,7 @@ function Layout() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const items = [
+    { arialabel: 'Home', icon: 'pi pi-fw pi-home', to: '/home' },
     { label: 'Second Hand', icon: 'pi pi-fw pi-tag', to: '/home/second-hand' },
     { label: 'Rent', icon: 'pi pi-fw pi-calendar', to: '/home/rent' },
     { label: 'Donations', icon: 'pi pi-fw pi-heart', to: '/home/donations' },
