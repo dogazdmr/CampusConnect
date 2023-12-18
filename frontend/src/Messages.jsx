@@ -46,7 +46,7 @@ export default function MessageForm() {
 
     return (
         <div className="modal round" style={{backgroundColor: "lavender"}}>
-          <div className="modal-content">
+          <div className="modal-content"> Messaging Seller
             
             <form onSubmit={handleSubmit}>
                 <InputText
@@ -56,7 +56,7 @@ export default function MessageForm() {
                     onChange={handleChange}
                     placeholder="Message Text"
                     style={{ width: '400px' }}
-                    className="mb-4 ml-4"
+                    className="mb-4 ml-4 mt-3"
                 />
                 {/* <br/>
                 <Calendar
@@ -68,17 +68,8 @@ export default function MessageForm() {
                     className="mb-4 ml-4"
                 /> */}
                 <br/>
-                <InputText
-                    type="text"
-                    name="message_from"
-                    value={message.message_from}
-                    onChange={handleChange}
-                    placeholder="Message From"
-                    style={{ width: '400px' }}
-                    className="mb-4 ml-4"
-                />
-                <br/>
-                <InputText
+                
+               {/*  <InputText
                     type="text"
                     name="message_to"
                     value={message.message_to}
@@ -86,7 +77,7 @@ export default function MessageForm() {
                     placeholder="Message To"
                     style={{ width: '400px' }}
                     className="mb-4 ml-4"
-                />
+                /> */}
                 <Button type="submit" style={{backgroundColor: "indigo"}}>Handle Message</Button>
             </form>
             <p>This is the message form content.</p>

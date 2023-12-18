@@ -114,6 +114,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import ClubDonations from './ClubDonations';
 
 function App() {
 
@@ -163,8 +164,8 @@ function App() {
                 element: <ClubHome />,
                 children: [
                   {
-                    path: "/club-home/edit-profile",
-                    element: <EditProfile />,
+                    path: "/club-home/club-donations",
+                    element: <ClubDonations />,
                   },
                 ]
               },

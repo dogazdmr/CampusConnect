@@ -164,6 +164,9 @@ export default function Rent() {
         console.log(`Item clicked with ID: ${itemId}`);
         navigate(`/home/second-hand/${itemId}`);
     } */
+    function handleClick(){
+      navigate(`/home/messages`)
+    }
 
     const priceBodyTemplate = (rowData) => {
       return `₺${rowData.price}`;
@@ -255,7 +258,7 @@ export default function Rent() {
                             style={{ backgroundColor: 'green', color: 'white' }}
                             className="p-button-rounded p-button-secondary" 
                             aria-label="Bookmark"
-                            //onClick={handleClick}
+                            onClick={handleClick}
                         />
                     } 
                     />

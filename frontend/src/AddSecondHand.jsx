@@ -103,7 +103,7 @@ export default function AddSecondHand({ onClose }) {
                     <br />
                     <InputText
                         type="text"
-                        name="condition"
+                        name="conditionOfProduct"
                         value={sale.conditionOfProduct}
                         onChange={handleChange}
                         placeholder="Condition"

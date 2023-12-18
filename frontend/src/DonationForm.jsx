@@ -8,6 +8,7 @@ import { Button } from 'primereact/button';
  
 export default function DonationForm({ onClose }) {
     const [donation, setDonation] = useState({
+        clubid: null,
         clubName: '',
         description: ''
     });
@@ -51,7 +52,7 @@ export default function DonationForm({ onClose }) {
             <InputText
                 type="text" 
                 name="clubName" 
-                value={donation.clubName} 
+                value={donation.clubid} 
                 onChange={handleChange} 
                 placeholder="Club Name"
                 style={{ width: '400px'}}

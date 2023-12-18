@@ -17,17 +17,14 @@ export default function AddRentItem({ onClose }) {
         productId: null
     });
 
-    /* const handleChange = (e) => {
-        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-        setSale({ ...sale, [e.target.name]: value });
-    }; */
     const handleChange = (e) => {
-        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-
-        setSale({
-            ...sale,
-            [e.target.name]: value,
-        });
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
+    
+        setSale((prevSale) => ({
+            ...prevSale,
+            [name]: newValue,
+        }));
     };
 
 
@@ -104,7 +101,7 @@ export default function AddRentItem({ onClose }) {
                     <br />
                     <InputText
                         type="text"
-                        name="condition"
+                        name="conditionOfProduct"
                         value={sale.conditionOfProduct}
                         onChange={handleChange}
                         placeholder="Condition"
@@ -125,10 +122,10 @@ export default function AddRentItem({ onClose }) {
                     </div>
                     <br />
                     <Button type="submit" style={{ backgroundColor: 'indigo' }}>
-                        Add Sale
+                        Add Item
                     </Button>
                 </form>
-                <p>This is the second-hand sale form content.</p>
+                <p>This is the rent form content.</p>
             </div>
         </div>
     );

@@ -13,14 +13,13 @@ export default function AddLostItem({ onClose }) {
     });
 
     const handleChange = (e) => {
-        console.log(e.target.name);
-
-        if (e.target.name === 'lostOrFound') {
-            // Convert to boolean (0 for found, 1 for lost)
-            setLostItem({ ...lostItem, [e.target.itemName]: e.target.value === '1' });
-        } else {
-            setLostItem({ ...lostItem, [e.target.itemName]: e.target.value });
-        }
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' || type === 'radio' ? checked : value;
+    
+        setLostItem((prevLostItem) => ({
+            ...prevLostItem,
+            [name]: newValue,
+        }));
     };
 
     const handleSubmit = async (e) => {

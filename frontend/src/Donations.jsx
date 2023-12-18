@@ -16,7 +16,7 @@ export default function Donations() {
     const [error, setError] = useState(null);
     const [donations, setDonations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [showModal, setShowModal] = useState(false);
+    //const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,27 +46,20 @@ export default function Donations() {
         }
     };
 
-    const handleAddClick = () => {
+    /* const handleAddClick = () => {
         setShowModal(true);
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
-    };
+    }; */
 
     const itemTemplate = (donation) => {
         return (
             <div className="p-col-12 p-md-4">
                 <Card title={`${donation.clubName}`} style={{ height: '400px', width: '350px' }} className="m-3">
                     <p>Details: {donation.description}</p>
-                    {/* <p>End Date: {donation.edate}</p>
-                    <p>Location: {donation.location}</p>
-                    <p>Accepting:</p>
-                    <ul>
-                        {donation.items && donation.items.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul> */}
+                    
                 </Card>
             </div>
         );
@@ -83,12 +76,12 @@ export default function Donations() {
     return (
         <div className="p-grid p-fluid">
             <div className="p-col-12">
-                <div>
+                {/* <div>
                     <h2>Donations Page</h2>
                     <Button label="Add Donation" onClick={handleAddClick} />
 
                     {showModal && <DonationForm onClose={handleCloseModal} />}
-                </div>
+                </div> */}
                 <Fieldset legend="Donations">
                     <div className="p-d-flex p-ai-center p-jc-between">
                         <InputText
