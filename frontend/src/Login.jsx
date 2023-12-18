@@ -42,7 +42,7 @@ export default function Login() {
 
     return (
         <div className="center-container grid p-fluid">
-        <p>user login username: 1234 <br/>club login: 4321 <br/> password empty</p>
+        <p></p>
             <Card className="center-card flex flex-column">
                 <h2 className="">Login</h2>
                 <InputText className="border-round h4 mb-4" value={studentId} placeholder="Student ID" onChange={(event) => handleChange(event.target.value)} />

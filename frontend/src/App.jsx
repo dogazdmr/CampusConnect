@@ -218,7 +218,7 @@ function Layout() {
   };
 
   return (
-    <div className="p-5 pl-7">
+    <div className="p-5 pl-7" style ={{backgroundColor:'#f1eee4' }}>
       <nav>
         <ul className="list-none d-flex align-items-center">
           {isNotLoginPath && (
