@@ -173,7 +173,7 @@ export default function SecondHand() {
 
 
     const filterClearTemplate = (options) => {
-        return <Button type="button" icon="pi pi-times" onClick={options.filterClearCallback} className="p-button-secondary"></Button>;
+        return <Button type="button" icon="pi pi-times" color='red' onClick={options.filterClearCallback} className="p-button-secondary"></Button>;
     }
 
     const filterApplyTemplate = (options) => {

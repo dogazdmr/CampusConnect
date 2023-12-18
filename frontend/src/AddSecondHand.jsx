@@ -69,6 +69,7 @@ export default function AddSecondHand({ onClose }) {
                         placeholder="Item Name"
                         style={{ width: '400px' }}
                         className="mb-4 ml-4"
+                        autoComplete='off'
                     />
                     <br />
                     <InputText

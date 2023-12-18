@@ -62,7 +62,7 @@ export default function LostandFound() {
   const itemTemplate = (item) => {
     return (
       <div className="p-col-12 p-md-4">
-        <Card title={`${item.itemName}`} style={{ height: '400px' }}>
+        <Card title={`${item.itemName}`} style={{ height: '400px' }} className='m-3'>
           <p>Found on: {item.itemPlace}</p>
           <p>Description: {item.itemDescription}</p>
           <p>Status (Lost or Found): {(item.lostOrFound == true)? "Lost" : "Found"} </p>
